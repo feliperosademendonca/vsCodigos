@@ -15,11 +15,12 @@
     <fieldset>
 
  <legend><h1>SISTEMA DE CONTROLE DE ENDEREÇO DE ESTANTES(SisEnd)</h1></legend>    
-         <fieldset>
-            <legend>Insira o EAN do produto procurado</legend>
-            <label>Produto:<input id="inputText" class="input-pesquisa" type="text"></label>
-            <button id="btn-Sub-ID" class="btn-submit" type="submit" value="Enviar" name="btn-Pesquisar">PESQUISAR</button>   
-        </fieldset>
+         
+    <fieldset id="fieldset-options">
+        <legend>Insira o EAN do produto procurado</legend>
+        <label>Produto:<input id="inputText" class="input-pesquisa" type="text"></label>
+        <button id="btn-Sub-ID" class="btn-submit" type="submit" value="Enviar" name="btn-Pesquisar">PESQUISAR</button>   
+    </fieldset>
  
     <fieldset id="fieldset-resultado">
         <legend>Resultado
@@ -27,7 +28,6 @@
         </table>
     </fieldset>
  
-
     <div id="add-Prod-End">
         <fieldset>
         <legend>Adicionar Produto Ao Endereço</legend>
@@ -122,6 +122,7 @@
 
          </fieldset>
     </div>
+
 </fieldset>
 
 </body>
