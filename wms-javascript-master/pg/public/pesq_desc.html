@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="../estilo.css">
+    <script type='module' src="script.js"></script>
+
+    <title>Mapa Estante - Pesquisa Descrição</title>
+</head>
+<body>
+
+    <legend><h1>SISTEMA DE CONTROLE DE ENDEREÇO DE ESTANTES(SisEnd)</h1></legend>    
+
+    <fieldset>
+
+        <legend>Selecione uma Opção</legend>  
+        <fieldset>
+            <legend>Insira Descrição do Produto</legend>
+            <label>Produto:<input id="inputText" class="input-pesquisa" type="text"></label>
+            <button id="btn-Sub-ID" class="btn-submit" type="submit" value="Enviar" name="btn-Pesquisar">PESQUISAR</button>   
+        </fieldset>
+ 
+    <fieldset id="fieldset-resultado">
+        <legend>Resultado
+        <table id="tabelaResultado"></legend>
+        </table>
+    </fieldset>    </fieldset>
+
+    <a href="../pg/menu.html"> <button id="menu1">VOLTAR</button></a>
