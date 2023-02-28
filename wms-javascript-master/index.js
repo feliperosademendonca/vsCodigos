@@ -2,26 +2,50 @@
 
 const express = require('express');
 const app = express();
+const handlebars = require('express-handlebars');
+const bodyParser = require('body-parser');
+ 
+ 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
-// rota para pg inicial
-app.get('/', function(req, res) {
-  res.send('SISTEMAS DE GESTÂO DE WMS OpenSource');
+// parse application/json
+app.use(bodyParser.json())
+ 
+ 
+
+app.engine('handlebars', handlebars.engine ({ defaultLayout:'main'}))
+app.set('view engine', 'handlebars')
+   
+
+// rota paras handlebars
+app.get('/main', function(req, res) {
+  res.render('main');
 });
 
-// rota para pagina de pesquisar endereço ou produtos
+app.get('/menu', function(req, res) {
+  res.render('menu');
+});
+ 
 app.get('/find', function(req, res) {
-    res.send('Pesquisa');
-  });
+  res.render('find');
+});
 
-// rota para pagina de adcionar produto ao endereço
+app.post('/result', function(req, res) {
+  var inputPesquisa = req.body.pesquisado
+  res.send('Pesquisado: '+ req.body.pesquisado);
+
+});
+ 
+
 app.get('/add', function(req, res) {
-    res.send('Adicionar produto ao endereço');
-  });
+  res.render('add');
+});
 
-// rota para pagina de remover o produto do endereço
+
 app.get('/rmv', function(req, res) {
-    res.send('Remover produto do endereço');
-  });
+  res.render('rmv');
+});
 
 // rota para endereço pública
 app.use(express.static(__dirname + '/pg/public/'));
@@ -31,7 +55,6 @@ app.use(express.static(__dirname + '/pg/public/'));
 app.get('/public/estilo.css', function(req, res) {
   res.sendFile(__dirname+'/pg/public/estilo.css');
 });
-   
 
 
 
