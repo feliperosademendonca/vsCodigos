@@ -1,3 +1,4 @@
+//criar regras de validação para limitar e restringir os objetos no estoque.
 
 var End = [
     {"id":"1","código":"","nome":"","rua":"a", "lado":"esquerdo","Predio":"1","andar":"1",},
@@ -27,4 +28,4 @@ var End = [
   
   ]
 
-  export {End}
+  module.exports = End; 
