@@ -4,7 +4,8 @@ const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
- 
+
+const findFunction = require('./findFunction')
  
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -33,8 +34,9 @@ app.get('/find', function(req, res) {
 
 app.post('/result', function(req, res) {
   var inputPesquisa = req.body.pesquisado
-  res.send('Pesquisado: '+ req.body.pesquisado);
-
+  findFunction(inputPesquisa)
+  res.render('result');
+  
 });
  
 
@@ -54,6 +56,7 @@ app.use(express.static(__dirname + '/pg/public/'));
 // rota para CSS
 app.get('/public/estilo.css', function(req, res) {
   res.sendFile(__dirname+'/pg/public/estilo.css');
+
 });
 
 

@@ -36,9 +36,11 @@ var end = [
   { "id": "024", "rua": "a", "lado": "esquerdo", "Predio": "6", "andar": "3", "produto": '' },
   { "id": "025", "rua": "a", "lado": "esquerdo", "Predio": "6", "andar": "4", "produto": '' },
 ]
+//carrega página
+document.onload = function () {
+     alert("clicou em pesquisar")
+}
 
- //carrega página
-$(document).ready(function () {
   //Pesquisar  
   $("button[name=btn-Pesquisar]").click(function () {
     //alert("clicou em pesquisar")
