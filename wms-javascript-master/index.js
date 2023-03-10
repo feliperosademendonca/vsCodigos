@@ -4,9 +4,7 @@ const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-
-const findFunction = require('./findFunction')
- 
+  
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -32,10 +30,9 @@ app.get('/find', function(req, res) {
   res.render('find');
 });
 
-app.post('/result', function(req, res) {
-  var inputPesquisa = req.body.pesquisado
-  findFunction(inputPesquisa)
-  res.render('result');
+app.get('/result', function(req, res) {
+  var pesquisado = req.body.pesquisado
+   res.send( pesquisado)
   
 });
  

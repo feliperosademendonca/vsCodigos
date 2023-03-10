@@ -85,6 +85,21 @@ button{
   color: #fff;
 }
 
+
+btnFind{
+  
+  width: 200px;
+  margin: 3px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  border: 3px solid #ff0000;
+  background-color: #555;
+  color: #fff;
+}
+
+
 .buttonMenu{
   width: 200px;
   height: 200px;

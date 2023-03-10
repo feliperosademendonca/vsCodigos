@@ -1,5 +1,5 @@
 
-console.log("inputPesquisa")
+console.log("Pesquisa")
 
     //carrega os dados do banco de dados
 

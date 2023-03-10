@@ -1,13 +1,19 @@
  
+
     <fieldset>
         <fieldset id="fieldset-resultado">
         <legend>Resultado
         <table id="tabelaResultado"></legend>
         </table>
     </fieldset>
-        
+        <p>Pesquisado: {{Pesquisado}}</p>
      </fieldset>
 
-    <a href="./menu"> <button id="menu1" class="button">VOLTAR</button></a>
+    <a href="./menu"> <button id="menu1" class="button btn">VOLTAR</button></a>
 
-<script>//$(document).ready(function () {alert("rmv")})</script>
+
+
+<script>
+  var pesquisado= "{{ pesquisado }}";
+  console.log(pesquisado);
+</script>

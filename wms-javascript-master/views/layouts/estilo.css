@@ -72,7 +72,7 @@ input{
   color: #555;
 }
 
-button{
+ btnFind{
   
   width: 200px;
   margin: 3px;
@@ -80,9 +80,22 @@ button{
   text-align: center;
   border: none;
   border-radius: 5px;
-  border: 1px solid #4444;
+  border: 3px solid #ff0000;
   background-color: #555;
   color: #fff;
+}
+
+.btn:hover{
+  
+  width: 200px;
+  margin: 3px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid #ff0000;
+  background-color: #700000;
+  color: #c2c2c2;
 }
 
 .buttonMenu{
