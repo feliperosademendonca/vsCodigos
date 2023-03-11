@@ -62,7 +62,7 @@ app.post('/result', function(req, res) {
        return false
 
      } if (prod.length - 1 == index) {
-       //msg erro pesquisa EAN
+       //msg erro pesquisa EAN 
        res.send( `<tbody><tr><th>EAN</th></tr><tr><td>EAN Não Localizado</td></tr></tbody>`)
      }
    }
