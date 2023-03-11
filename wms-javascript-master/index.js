@@ -57,13 +57,13 @@ app.post('/result', function(req, res) {
        + '<tr><td>' + tdEan + '</td><td>' + tdCodigo + '</td><td>' + tdNome + '</td><td>' + tdValidade + '</td><td>' + tdQuantidade + '</td><td>' + "" + '</td><td>' + "" + '</td><td>' + "" + '</td></tr><br>'
        + '</tbody>'
 
-       res.send( table)
+       res.send( table) 
 
        return false
 
      } if (prod.length - 1 == index) {
        //msg erro pesquisa EAN
-       res.send( "<tbody><tr><th>EAN</th></tr><tr><td>EAN Não Localizado</td></tr></tbody>")
+       res.send( `<tbody><tr><th>EAN</th></tr><tr><td>EAN Não Localizado</td></tr></tbody>`)
      }
    }
  ;
