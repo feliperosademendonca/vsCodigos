@@ -28,4 +28,4 @@ var End = [
   
   ]
 
-  module.exports = End; 
+  exports.End=End 

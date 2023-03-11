@@ -9,4 +9,4 @@
     {"EAN":7894900011510, "codigo":"08","nome":"Zero 350ml unid","validade":"01/01/23","quantidade":800}
    ]
 
-module.exports= Prod
+exports.Prod= Prod
