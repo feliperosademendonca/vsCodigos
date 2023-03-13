@@ -36,7 +36,7 @@ app.get('/find', function(req, res) {
 app.post('/result', function(req, res) {
 
   var pesquisado = req.body.pesquisado
-
+console.log(pesquisado)
  //Pesquisar  
    let inputPesquisa = pesquisado
 
