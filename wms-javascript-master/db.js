@@ -1,16 +1,17 @@
 const Sequelize = require("sequelize");
+
 const sequelize = new Sequelize(
+ 'end',
  'root',
- 'estantes',
  '1234',
   {
-    host: 'localhost',
+    host: '127.0.0.1',
     dialect: 'mysql'
   }
 );
 
 sequelize.authenticate().then(() => {
-    console.log('Connection has been established successfully.');
+    console.log('Conexão com sucesso');
  }).catch((error) => {
-    console.error('Unable to connect to the database: ', error);
+    console.error('Erro ao realizar conexão com Banco de Dados: ');
  });
