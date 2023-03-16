@@ -21,8 +21,8 @@ app.set('view engine', 'handlebars')
    
 
 // rota paras handlebars
-app.get('/main', function(req, res) {
-  res.render('main');
+app.get('/', function(req, res) {
+  res.render('menu');
 });
 
 app.get('/menu', function(req, res) {
@@ -36,38 +36,49 @@ app.get('/find', function(req, res) {
 app.post('/result', function(req, res) {
 
   var pesquisado = req.body.pesquisado
-console.log(pesquisado)
  //Pesquisar  
-   let inputPesquisa = pesquisado
+    
 
    //percorre o arrey de objetos e seus valores
   for(index=0;index<prod.length;index++) {
+    //console.log(prod[index].nome)
+    //console.log(pesquisado)
+    //console.log(prod[index].EAN+' , '+prod[index].nome+' , '+prod[index].codigo)
+   
+     if (pesquisado == prod[index].EAN |pesquisado == prod[index].nome| pesquisado == prod[index].codigo) {
+ 
+       var ProdPesquisa={
+        Ean:prod[index].EAN,
+        Codigo:prod[index].codigo,
+        Nome:prod[index].nome,
+        Quantidade:prod[index].quantidade,
+        Validade:prod[index].validade,
+        }
 
-     if (inputPesquisa !== prod.EAN) {
-
-       var tdEan = prod[index].EAN
-       let tdCodigo = prod[index].codigo
-       let tdNome = prod[index].nome
-       let tdQuantidade = prod[index].quantidade
-       let tdValidade = prod[index].validade
-
-
-      var table ='<tbody>'
-       + '<tr> <th>EAN</th><th>cod</th><th>nome</th><th>valid</th><th>quantidade</th><th>rua</th><th>lado</th><th>predio</th><th>andar</th></tr>'
-       + '<tr><td>' + tdEan + '</td><td>' + tdCodigo + '</td><td>' + tdNome + '</td><td>' + tdValidade + '</td><td>' + tdQuantidade + '</td><td>' + "" + '</td><td>' + "" + '</td><td>' + "" + '</td></tr><br>'
-       + '</tbody>'
-
-       res.send( table) 
+        res.render('result',{ProdPesquisa:{
+                                        Ean:prod[index].EAN,
+                                        Codigo:prod[index].codigo,
+                                        Nome:prod[index].nome,
+                                        Quantidade:prod[index].quantidade,
+                                        Validade:prod[index].validade,
+                                        }}) 
 
        return false
 
-     } if (prod.length - 1 == index) {
-       //msg erro pesquisa EAN 
-       res.send( `<tbody><tr><th>EAN</th></tr><tr><td>EAN Não Localizado</td></tr></tbody>`)
+     } if (prod.length -1 == index) {
+
+        res.render('result',{msg:{msg:'Não localizado'+' : '+ pesquisado}}
+                  ) 
+
+      console.log('Produto não encontrado')
+       return false
+
+ 
+
      }
    }
  ;
-  res.render( "result",{ termo:pesquisado})
+  //res.render( "result",{ termo:pesquisado})
 });
  
 
