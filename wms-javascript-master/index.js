@@ -28,23 +28,20 @@ app.get('/', function(req, res) {
 app.get('/menu', function(req, res) {
   res.render('menu');
 });
- 
+ //Pesquisar  
+     
 app.get('/find', function(req, res) {
   res.render('find');
 });
-
+ //Resultado da Pesquisa
 app.post('/result', function(req, res) {
 
   var pesquisado = req.body.pesquisado
- //Pesquisar  
-    
+
 
    //percorre o arrey de objetos e seus valores
   for(index=0;index<prod.length;index++) {
-    //console.log(prod[index].nome)
-    //console.log(pesquisado)
-    //console.log(prod[index].EAN+' , '+prod[index].nome+' , '+prod[index].codigo)
-   
+  
      if (pesquisado == prod[index].EAN |pesquisado == prod[index].nome| pesquisado == prod[index].codigo) {
  
        var ProdPesquisa={
@@ -72,15 +69,55 @@ app.post('/result', function(req, res) {
 
       console.log('Produto não encontrado')
        return false
-
- 
-
      }
-   }
- ;
-  //res.render( "result",{ termo:pesquisado})
+   };
 });
+
+
+app.get('/end', function(req, res) {
+  res.render('end');
+});
+
+app.post('/resultEstante', function(req, res) {
+  
+  var pesquisado = req.body.pesquisado
+
+
+   //percorre o arrey de objetos e seus valores
+  for(index=0;index<end.length;index++) {
+  
+     if (pesquisado == prod[index].EAN |pesquisado == prod[index].nome| pesquisado == prod[index].codigo) {
  
+       var endPesquisa={
+        Ean:end[index].EAN,
+        Codigo:end[index].codigo,
+        Nome:end[index].nome,
+        Quantidade:end[index].quantidade,
+        Validade:end[index].validade,
+        }
+
+        res.render('resultEstante',{ProdPesquisa:{
+                                        Ean:prod[index].EAN,
+                                        Codigo:prod[index].codigo,
+                                        Nome:prod[index].nome,
+                                        Quantidade:prod[index].quantidade,
+                                        Validade:prod[index].validade,
+                                        }}) 
+
+       return false
+
+     } if (prod.length -1 == index) {
+
+        res.render('resultEstante',{msg:{msg:'Não localizado'+' : '+ pesquisado}}
+                  ) 
+
+      console.log('Produto não encontrado')
+       return false
+     }
+   };
+  res.render('resultEstante');
+});
+
 
 app.get('/add', function(req, res) {
   res.render('add');
