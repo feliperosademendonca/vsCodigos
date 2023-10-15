@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-const { End } = require('./end.js');
+ 
 
 //importar modulos de End.js e Prod.js
 const end = require('./end.js').End
@@ -95,46 +95,40 @@ app.post('/resultEstante', function(req, res) {{{
 
   } else {
 
-    endResult.forEach(end => {  console.log(end)
-    console.log('iterar na busca dos objetos')
+    console.log('Endereço encontrado foram: '+endResult.length)   
+    endResult.forEach(end => {  console.log(end) 
+     
+       var endPesquisa={
+         id:end.id,
+         codigo:end.codigo,
+         predio:end.predio,
+         rua:end.rua,
+         lado:end.lado,
+         andar:end.andar,
+ 
+         }
+ 
+     //não esta carregando as propiedades
+          console.log('id informado: '+endPesquisa.id)
+            res.render('resultEstante',{endPesquisa:{
+                                                   codigo:endPesquisa.codigo,
+                                                   id:endPesquisa.id,
+                                                   predio:endPesquisa.Predio,
+                                                   andar:endPesquisa.andar,
+                                                   rua:endPesquisa.rua,
+                                                   lado:endPesquisa.lado,
+                                                   
+                                              }})   
+
+      
+
     })
    
-    console.log('Endereço encontrado foram: '+endResult.length)   
-    
-    var endPesquisa={
-        id:endResult.id,
-        codigo:endResult.codigo,
-        predio:endResult.predio,
-        rua:endResult.rua,
-        lado:endResult.lado,
-        andar:endResult.andar,
-
-        }
-
-      console.log(endPesquisa)
-    res.render('resultEstante',{endPesquisa:{
-                                                  codigo:endPesquisa.codigo,
-                                                  id:endPesquisa.id,
-                                                  predio:endPesquisa.Predio,
-                                                  andar:endPesquisa.andar,
-                                                  rua:endPesquisa.rua,
-                                                  lado:endPesquisa.lado,
-                                                  
-                                              }})  }
-                                        
-
-       return false
-
-     } if (end.length -1 == index) {
-
-        res.render('resultEstante',{msg:{msg:'Endereço Não Localizado'+' : '+ EndInput}}) 
-        console.log('Endereço Não Encontrado')
-       return false
-
-     }
-   };
-  res.render('resultEstante');
-});
+   }
+  } 
+ };
+}
+);
 
 
 app.get('/add', function(req, res) {

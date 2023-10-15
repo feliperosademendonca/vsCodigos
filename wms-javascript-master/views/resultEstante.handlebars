@@ -2,13 +2,13 @@
 
     <fieldset>
         <fieldset id="fieldset-resultado">
-            <legend id="resultado">Resultado Pesquisado:{{input}}</legend>
+            <legend id="resultado">Resultado Pesquisado:{{EndInput}}</legend>
                 <table id="tabelaResultado" >
                       <tbody><thead>{{msg.msg}}</thead>
                         <tr><th>EAN</th><th>CODIGO</th><th>DESCRIÇÃO</th><th>VALIDADE</th><th>QUANTIDADE</th><th>RUA</th><th>LADO</th><th>PREDIO</th><th>ANDAR</th></tr><tr>
-                     {{#each this}}
-                        <td>{{endPesquisa.ean}}</td><td>{{endPesquisa.codigo}}</td><td>{{endPesquisa.nome}}</td><td>{{endPesquisa.validade}}</td><td>{{endPesquisa.quantidade}}</td><td>{{endPesquisa.rua}}</td><td>{{endPesquisa.lado}}</td><td>{{endPesquisa.predio}}</td><td>{{endPesquisa.andar}}</td></tr><br>
-                       {{/each}}   
+                       
+                                <td>{{endPesquisa.ean}}</td><td>{{endPesquisa.codigo}}</td><td>{{endPesquisa.nome}}</td><td>{{endPesquisa.validade}}</td><td>{{endPesquisa.quantidade}}</td><td>{{endPesquisa.rua}}</td><td>{{endPesquisa.lado}}</td><td>{{endPesquisa.predio}}</td><td>{{endPesquisa.andar}}</td></tr><br>
+                               
                       </tbody>
                 </table>
         </fieldset>
