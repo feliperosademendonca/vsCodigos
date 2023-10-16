@@ -4,16 +4,14 @@
         <fieldset id="fieldset-resultado">
             <legend id="resultado">Resultado Pesquisado:{{EndInput}}</legend>
                 <table id="tabelaResultado" >
-                      <tbody><thead>{{msg.msg}}</thead>
-                        <tr><th>EAN</th><th>CODIGO</th><th>DESCRIÇÃO</th><th>VALIDADE</th><th>QUANTIDADE</th><th>RUA</th><th>LADO</th><th>PREDIO</th><th>ANDAR</th></tr><tr>
-                       
-                                <td>{{endPesquisa.ean}}</td><td>{{endPesquisa.codigo}}</td><td>{{endPesquisa.nome}}</td><td>{{endPesquisa.validade}}</td><td>{{endPesquisa.quantidade}}</td><td>{{endPesquisa.rua}}</td><td>{{endPesquisa.lado}}</td><td>{{endPesquisa.predio}}</td><td>{{endPesquisa.andar}}</td></tr><br>
-                               
+                      <tbody>
+                 
+                            {{#each endPesqusa}}
+                                <tr><th>CODIGO</th><th>EAN</th><th>DESCRIÇÃO</th><th>VALIDADE</th><th>QUANTIDADE</th><th>RUA</th><th>LADO</th><th>PREDIO</th><th>ANDAR</th></tr><tr>
+                                  <td>{{codigo}}</td><td>{{produtoNoEndereco.EAN}}</td><td>{{produtoNoEndereco.descricao}}</td><td>{{produtoNoEndereco.validade}}</td><td>{{produtoNoEndereco.quantidade}}</td><td>{{rua}}</td><td>{{lado}}</td><td>{{predio}}</td><td>{{andar}}</td></tr><br>
+                            
+                            {{/each}}           
                       </tbody>
                 </table>
         </fieldset>
     </fieldset>
-
-    <a href="./menu"> <button id="menu1" class="button btn">VOLTAR</button></a>
-
-     

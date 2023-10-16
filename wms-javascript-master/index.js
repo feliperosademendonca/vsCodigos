@@ -85,42 +85,23 @@ app.post('/resultEstante', function(req, res) {{{
   var EndInput = req.body.pesquisadoEndEstante
   console.log('predio informado: '+EndInput)
  
-   
-   
-//Pesquisa no Array predio
-   var endResult = end.filter(end => end.predio == EndInput);
+        //Pesquisa no Array predio
+          var endResult = end.filter(end => end.predio == EndInput);
 
-  if (endResult.length===0) {
-    console.log('nada encontrado')
+          if (endResult.length===0) {
+            console.log('nada encontrado')
 
-  } else {
+          } else {
 
-    console.log('Endereço encontrado foram: '+endResult.length)   
-    endResult.forEach(end => {  console.log(end) 
-     
-       var endPesquisa={
-         id:end.id,
-         codigo:end.codigo,
-         predio:end.predio,
-         rua:end.rua,
-         lado:end.lado,
-         andar:end.andar,
- 
-         }
- 
-     //não esta carregando as propiedades
-          console.log('id informado: '+endPesquisa.id)
-            res.render('resultEstante',{endPesquisa:{
-                                                   codigo:endPesquisa.codigo,
-                                                   id:endPesquisa.id,
-                                                   predio:endPesquisa.Predio,
-                                                   andar:endPesquisa.andar,
-                                                   rua:endPesquisa.rua,
-                                                   lado:endPesquisa.lado,
-                                                   
-                                              }})   
+            console.log('Endereço encontrado foram: '+endResult.length)   
+            endResult.forEach(end => {  console.log(end.produtoNoEndereco.descricao) 
+             
+        
+            //não esta carregando as propiedades
+                  console.log('id informado: '+ end.id)
+                    res.render('resultEstante',{endPesqusa:end})   
 
-      
+              
 
     })
    
