@@ -5,12 +5,22 @@
             <legend id="resultado">Resultado Pesquisado:{{EndInput}}</legend>
                 <table id="tabelaResultado" >
                       <tbody>
-                 
-                            {{#each endPesqusa}}
-                                <tr><th>CODIGO</th><th>EAN</th><th>DESCRIÇÃO</th><th>VALIDADE</th><th>QUANTIDADE</th><th>RUA</th><th>LADO</th><th>PREDIO</th><th>ANDAR</th></tr><tr>
-                                  <td>{{codigo}}</td><td>{{produtoNoEndereco.EAN}}</td><td>{{produtoNoEndereco.descricao}}</td><td>{{produtoNoEndereco.validade}}</td><td>{{produtoNoEndereco.quantidade}}</td><td>{{rua}}</td><td>{{lado}}</td><td>{{predio}}</td><td>{{andar}}</td></tr><br>
-                            
-                            {{/each}}           
+                  
+        {{#each objetosEncontrados}}
+        <tr>
+          <td>{{produtoNoEndereco.EAN}}</td>
+          <td>{{produtoNoEndereco.codigo}}</td>
+          <td>{{produtoNoEndereco.descricao}}</td>
+          <td>{{produtoNoEndereco.validade}}</td>
+          <td>{{produtoNoEndereco.quantidade}}</td>
+          <td>{{rua}}</td>
+          <td>{{lado}}</td>
+          <td>{{predio}}</td>
+          <td>{{andar}}</td>
+        </tr>
+      {{/each}}
+   <tr>   <th>TOTAL do Produto</th> <td></td><td></td><td></td><td>{{soma}}</td> <td></td><td></td><td></td><td></td></tr>
+              
                       </tbody>
                 </table>
         </fieldset>

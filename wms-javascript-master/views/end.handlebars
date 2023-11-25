@@ -6,11 +6,22 @@
                     <fieldset>
                       <legend>Escaneie Endereço na Estante</legend>  
 
-                       <label>Código da Estante:
-                            <input id="inputText" class="input-pesquisa-estante" type="number" name="pesquisadoEndEstante">
+                       <label>Código da Rua:
+                            <input id="inputText" class="input-pesquisa-estante" type="number" min="1" max="23" name="pesquisadoEndEstante" required>
                         </label>
-                       <button id="btnFindEstante" class="btn btn-submit" type="submit" value="" name="">PESQUISAR ENDEREÇO</button>   
+                         <label>Código da Lado:
+                            <input id="inputText" class="input-pesquisa-estante" type="number" min="1" max="23" name="pesquisadoEndEstante" required>
+                        </label>
+                         <label>Código da Predio:
+                            <input id="inputText" class="input-pesquisa-estante" type="number" min="1" max="23" name="pesquisadoEndEstante" required>
+                        </label>
+                         <label>Código da Andar:
+                            <input id="inputText" class="input-pesquisa-estante" type="number" min="1" max="23" name="pesquisadoEndEstante" required>
+                        </label>
+                       <button id="btnFindEstante" class="btn btn-submit" type="submit" value="" name="pesqEnd">PESQUISAR ENDEREÇO</button>   
                     </fieldset>
+
+
                 </form>
     </fieldset>
       

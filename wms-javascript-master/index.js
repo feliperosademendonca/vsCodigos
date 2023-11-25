@@ -36,42 +36,42 @@ app.get('/find', function(req, res) {
   res.render('find');
 });
 
-//Resultado da Pesquisa
+//Resultado da Pesquisa Produto
 app.post('/result', function(req, res) {
 
   var pesquisado = req.body.pesquisado
- 
+  console.log("Pesquisado " +pesquisado)
+
    //percorre o arrey de objetos e seus valores
-  for(index=0;index<prod.length;index++) {
-       if (pesquisado == prod[index].EAN |pesquisado == prod[index].nome| prod[index].nome.includes(pesquisado)) {
-        
-       var ProdPesquisa={
-        Ean:prod[index].EAN,
-        Codigo:prod[index].codigo,
-        Nome:prod[index].nome,
-        Quantidade:prod[index].quantidade,
-        Validade:prod[index].validade,
-        }
+  
+  var objetosEncontrados = end.filter(objeto => objeto.produtoNoEndereco.EAN == pesquisado)
 
-        res.render('result',{ProdPesquisa:{
-                                        Ean:prod[index].EAN,
-                                        Codigo:prod[index].codigo,
-                                        Nome:prod[index].nome,
-                                        Quantidade:prod[index].quantidade,
-                                        Validade:prod[index].validade,
-                                        }}) 
 
-       return false
+  if(objetosEncontrados.length > 0){
+ 
+    var soma = objetosEncontrados.reduce(function (acumulador, item) {
+      return acumulador + item.produtoNoEndereco.quantidade;
+    }, 0);
+    console.log(objetosEncontrados)
+    res.render('result',{objetosEncontrados, pesquisado, soma})   
 
-     } if (prod.length -1 == index) {
+  }else{
 
-        res.render('result',{msg:{msg:'Não localizado'+' : '+ pesquisado}}
-                  ) 
+    console.log("Nenhum EAN")
+    console.log("Pesquisando pela Descrição")
 
-      console.log('Produto não encontrado')
-       return false
-     }
-   };
+    
+  var objetosEncontrados = end.filter(objeto => objeto.produtoNoEndereco.descricao.indexOf(pesquisado) !== -1);
+    var soma = objetosEncontrados.reduce(function (acumulador, item) {
+      return acumulador + item.produtoNoEndereco.quantidade;
+    }, 0);
+
+    console.log("Encontrado: "+objetosEncontrados)
+
+    res.render('result',{objetosEncontrados, pesquisado, soma})   
+
+   // res.render('result',{pesquisado})  
+  }
 });
 
 //Pesquisa Endereço
@@ -82,19 +82,20 @@ app.get('/end', function(req, res) {
 //Resultado Pesquisa Endereço
 app.post('/resultEstante', function(req, res) {{{
   
+  
   var EndInput = req.body.pesquisadoEndEstante
-  console.log('predio informado: '+EndInput)
+  console.log('EndSolicitado: '+EndInput)
  
         //Pesquisa no Array predio
-          var endResult = end.filter(end => end.predio == EndInput);
+          var endResult = end.filter(end => end.id == EndInput);
 
           if (endResult.length===0) {
             console.log('nada encontrado')
 
           } else {
 
-            console.log('Endereço encontrado foram: '+endResult.length)   
-            endResult.forEach(end => {  console.log(end.produtoNoEndereco.descricao) 
+            console.log(endResult.length+' endereço encontrado')
+            endResult.forEach(end=>{console.log(end.produtoNoEndereco.descricao) 
              
         
             //não esta carregando as propiedades
@@ -109,8 +110,7 @@ app.post('/resultEstante', function(req, res) {{{
   } 
  };
 }
-);
-
+)
 
 app.get('/add', function(req, res) {
   res.render('add');

@@ -37,9 +37,7 @@ var end = [
   { "id": "025", "rua": "a", "lado": "esquerdo", "Predio": "6", "andar": "4", "produto": '' },
 ]
 //carrega página
-document.onload = function () {
-     alert("clicou em pesquisar")
-}
+//document.onload = function () {alert("clicou em pesquisar")}
 
   //Pesquisar  
   $("button[name=btn-Pesquisar]").click(function () {
@@ -125,4 +123,4 @@ document.onload = function () {
 
 
   //ultima chave da função   
-})
+

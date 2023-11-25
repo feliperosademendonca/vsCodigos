@@ -2,13 +2,40 @@
 
     <fieldset>
         <fieldset id="fieldset-resultado">
-            <legend id="resultado">Resultado Pesquisado:{{input}}</legend>
-                <table id="tabelaResultado" >
-                      <tbody><thead>{{msg.msg}}</thead>
-                        <tr><th>EAN</th><th>CODIGO</th><th>DESCRIÇÃO</th><th>VALIDADE</th><th>QUANTIDADE</th><th>RUA</th><th>LADO</th><th>PREDIO</th><th>ANDAR</th></tr><tr>
-                            <td>{{ProdPesquisa.Ean}}</td><td>{{ProdPesquisa.Codigo}}</td><td>{{ProdPesquisa.Nome}}</td><td>{{ProdPesquisa.Validade}}</td><td>{{ProdPesquisa.Quantidade}}</td><td>{{ProdPesquisa.Rua}}</td><td>{{ProdPesquisa.Lado}}</td><td>{{ProdPesquisa.Predio}}</td><td>{{ProdPesquisa.Andar}}</td></tr><br>
-                      </tbody>
-                </table>
+             <legend id="resultado">Resultado Pesquisado:{{pesquisado}}</legend>
+              <table id="tabelaResultado">
+    <thead>
+      <tr>
+        <th>EAN</th>
+        <th>CODIGO</th>
+        <th>DESCRIÇÃO</th>
+        <th>VALIDADE</th>
+        <th>QUANTIDADE</th>
+        <th>RUA</th>
+        <th>LADO</th>
+        <th>PREDIO</th>
+        <th>ANDAR</th>
+      </tr>
+    </thead>
+    <tbody>
+       
+        {{#each objetosEncontrados}}
+        <tr>
+          <td>{{produtoNoEndereco.EAN}}</td>
+          <td>{{produtoNoEndereco.codigo}}</td>
+          <td>{{produtoNoEndereco.descricao}}</td>
+          <td>{{produtoNoEndereco.validade}}</td>
+          <td>{{produtoNoEndereco.quantidade}}</td>
+          <td>{{rua}}</td>
+          <td>{{lado}}</td>
+          <td>{{predio}}</td>
+          <td>{{andar}}</td>
+        </tr>
+      {{/each}}
+   <tr>   <th>TOTAL do Produto</th> <td></td><td></td><td></td><td>{{soma}}</td> <td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
         </fieldset>
     </fieldset>
 
