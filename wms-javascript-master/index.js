@@ -3,12 +3,14 @@ const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-
+ 
 
  
 //importar modulos de End.js e Prod.js
 const end = require('./end.js').End
 const prod = require('./prod.js').Prod
+const rmv = require('../wms-javascript-master/rmv.js');
+const add = require('./../wms-javascript-master/add.js');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -42,9 +44,14 @@ app.get('/find', function(req, res) {
 
 //Resultado da Pesquisa Produto
 app.post('/result', function(req, res) {
+  var btnRmv = req.body.btnRmv
+  console.log(btnRmv)
 
-  var pesquisado = req.body.pesquisado
-  console.log("Pesquisado " +pesquisado)
+    if( btnRmv !== undefined){
+              rmv(btnRmv)
+    }else{
+    var pesquisado = req.body.pesquisado
+    console.log("Pesquisado " +pesquisado)
 
    //percorre o arrey de objetos e seus valores
   
@@ -76,6 +83,41 @@ app.post('/result', function(req, res) {
 
    // res.render('result',{pesquisado})  
   }
+}
+}
+)
+;
+
+app.post('/resultend', function(req, res) {
+  console.log('Carregou resultend')
+  // Coordenada específica que você deseja encontrar
+  var pesquisado = req.body.pesquisadoEndEstante
+  var coordenadaAlvo = {
+      rua:pesquisado[0],
+      lado:pesquisado[1],
+      predio:pesquisado[2],
+      andar:pesquisado[3],
+    }
+
+
+    console.log(coordenadaAlvo)
+
+// Encontrando a ocorrência única com a coordenada específica
+let objetosEncontrados = end.filter(objeto => {
+  return (
+          objeto.rua == coordenadaAlvo.predio && 
+          objeto.lado == coordenadaAlvo.lado &&
+          objeto.predio == coordenadaAlvo.predio &&
+          objeto.andar == coordenadaAlvo.andar 
+
+
+          );
+      });
+
+// Exibindo o resultado
+console.log(objetosEncontrados);
+var acao ='ADCIONAR'
+  res.render('resultend',{objetosEncontrados,pesquisado, acao });
 });
 
 //Pesquisa Endereço
@@ -83,41 +125,36 @@ app.get('/end', function(req, res) {
   res.render('end');
 });
 
-//Resultado Pesquisa Endereço
-app.post('/resultEstante', function(req, res) {{{
-  
-  
-  var EndInput = req.body.pesquisadoEndEstante
-  console.log('EndSolicitado: '+EndInput)
- 
-        //Pesquisa no Array predio
-          var endResult = end.filter(end => end.id == EndInput);
+//Resultado Pesquisa Endereço Vazio
+app.post('/resultendvazio', function(req, res) {
 
-          if (endResult.length===0) {
-            console.log('nada encontrado')
 
-          } else {
+  var pesquisado = 'Endereço Vazio'
+  console.log('EndSolicitado: '+pesquisado)
 
-            console.log(endResult.length+' endereço encontrado')
-            endResult.forEach(end=>{console.log(end.produtoNoEndereco.descricao) 
-             
-        
-            //não esta carregando as propiedades
-                  console.log('id informado: '+ end.id)
-                    res.render('resultEstante',{endPesqusa:end})   
+  // Nome da propriedade a ser verificada
+let propriedadeAlvo = 'produtoNoEndereco';
 
-              
+// Filtrando o array para encontrar objetos com a propriedade nula ou inexistente
+let objetosEncontrados = end.filter(objeto => {  return objeto[propriedadeAlvo].EAN === '';
+});
+  // Exibindo o resultado
+  console.log(objetosEncontrados);
 
-    })
-   
-   }
-  } 
- };
-}
-)
+  res.render('resultendvazio',{objetosEncontrados, pesquisado,})   
+
+})
 
 app.get('/add', function(req, res) {
+
   res.render('add');
+});
+
+app.post('/resultadd', function(req, res) {
+    let addprod = req.body.ADD
+    console.error("carregou resultadd e "+addprod);
+    add(addprod)
+    res.render('resultadd');
 });
 
 app.get('/rmv', function(req, res) {

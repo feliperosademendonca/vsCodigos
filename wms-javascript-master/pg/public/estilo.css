@@ -86,8 +86,15 @@ button{
 }
 
 
-btnFind{
-  
+button:active{
+  border: 4px solid #2bff00;
+  background-color: #13a000;
+  color: #ffffff;
+  transition: 300ms;
+}
+
+
+.btnFind{
   width: 200px;
   margin: 3px;
   height: 30px;
@@ -145,4 +152,26 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.btmRmv{
+  
+   border-radius: 5px;
+  border: 4px solid #57575744;
+  box-shadow: 2px 2px 5px #00000093;
+}
+
+.btmRmv:hover{
+  border: 4px solid #5b48c7;
+  background-color: #2a00c4;
+  color: #ffffff;
+  transition: 100ms;
+}
+
+
+.btmRmv:active{
+  border: 4px solid red;
+  background-color: rgb(161, 0, 0);
+  color: #ffffff;
+  transition: 100ms;
 }

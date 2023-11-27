@@ -1,18 +1,18 @@
- 
+<form action="/resultadd" method="post">
 <div id="add-Prod-End">
         <fieldset>
         <legend>Adicionar Produto Ao Endereço</legend>
 
         <label>Numero EAN do Produto:
-        <input type="text" name="ADD-EAN" id="ADD-EAN-ID" placeholder=" "></label><br>
+        <input type="text" name="ADD" id="ADD-EAN-ID" placeholder=" "></label><br>
 
         <label>Validade:
-        <input type="date" name="ADD-DATE-VALIDADE" id="ADD-DATE-VALIDADE-ID" placeholder=" "></label><br>
+        <input type="date" name="ADD" id="ADD-DATE-VALIDADE-ID" placeholder=" "></label><br>
 
         <label>Quantidade:
-            <input type="number" name="ADD-QUANTIDADE" id="ADD-QNATIDADE-ID" placeholder=" "></label><br>
+            <input type="number" name="ADD" id="ADD-QNATIDADE-ID" placeholder=" "></label><br>
         <label>Rua:
-            <select  name="ADD-RUA" id="ADD-RUA-ID">
+            <select  name="ADD-RUA" id="ADD">
                 <optgroup label="RUA">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -29,14 +29,14 @@
                 </optgroup>
             </select>
         </label>
-        <label for="ADD-LADO-ID">Lado:
-            <select name="ADD-LADO" id="ADD-LADO-ID">
+        <label for="ADD">Lado:
+            <select name="ADD" id="inputAddLado" value="">
                     <option>A</option>
                     <option>B</option>
             </select>
         </label>
-        <label for="ADD-PREDIO-ID">Predio:
-            <select name="ADD-PREDIO" id="ADD-PREDIO-ID" >
+        <label for="ADD">Predio:
+            <select name="ADD" id="ADD-PREDIO-ID" >
                 <optgroup label="PRÉDIO">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -61,8 +61,8 @@
                 </optgroup>
             </select>
         </label>
-        <label for="ADD-ANDAR-ID">Andar:
-            <select name="ADD-ANDAR" id="ADD-ANDAR-ID">
+        <label for="ADD">Andar:
+            <select name="ADD" id="ADD-ANDAR-ID">
                 <optgroup label="Andar">
                     <option>1</option>
                     <option>2</option>
@@ -70,14 +70,9 @@
                  </optgroup>
             </select>
         </label>
-        <button type="submit" name="ADD-EAN" id="ADD-EAN-BTN" class="btn">ADCIONAR</button>
-        <fieldset id="fieldset-resultado">
-            <legend>Resultado
-            <table id="ID-TABLE-ADD" name="table-add"></legend>
-            </table>
+        <button type="submit" name="ADD-btn" id="ADD-EAN-BTN" class="btn">ADCIONAR</button>
         </fieldset>
-        </fieldset>
-    </div>
 
-<script>//$(document).ready(function () {alert("add")})</script>
+    </div>
+        </form> 
 
