@@ -3,13 +3,14 @@ const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
- 
 
+
+ 
 //importar modulos de End.js e Prod.js
 const end = require('./end.js').End
 const prod = require('./prod.js').Prod
 
- // parse application/x-www-form-urlencoded
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
@@ -19,7 +20,9 @@ app.use(bodyParser.json())
 //Configuração da ViewEngine
 app.engine('handlebars', handlebars.engine ({ defaultLayout:'main'}))
 app.set('view engine', 'handlebars')
-   
+
+
+
 
 // rota do handlebars
 app.get('/', function(req, res) {
@@ -29,6 +32,7 @@ app.get('/', function(req, res) {
 // Tela Inicial HOMEPage
 app.get('/menu', function(req, res) {
   res.render('menu');
+
 });
 
 //Pesquisar  Produto

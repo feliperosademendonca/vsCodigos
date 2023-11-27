@@ -1,3 +1,4 @@
+   
     <fieldset>                
                 <form action="/result" method="post">
                     <fieldset>
@@ -7,6 +8,66 @@
                             <input id="inputText" minlength="5"   class="input-pesquisa" type="text" name="pesquisado" required>
                         </label>
                        <button id="btnFind" class="btn btn-submit" type="submit" value="" name="">PESQUISAR</button>   
-                    </fieldset>
-                </form>
-        
+               </form>
+    </fieldset>
+
+    <fieldset>
+            <title>Leitor de QR Code e Código de Barras</title>
+
+        <video id="preview" style="width:100%;"></video>
+        <div id="result"></div>
+
+    
+        <script type="module" src="/app.js"></script>
+    </fieldset>
+
+    <script>
+        alert("Carregou o script na página");
+const Instascan = require('./node_modules/instascan');
+const Quagga = require('.quagga');
+
+        document.addEventListener('DOMContentLoaded', function () {
+    // Configuração do leitor de QR Code
+    let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+    scanner.addListener('scan', function (content) {
+        alert('QR Code lido: ' + content);
+    });
+
+    // Inicialização do leitor de QR Code
+    Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+        } else {
+            console.error('Nenhuma câmera encontrada.');
+        }
+    }).catch(function (e) {
+        console.error(e);
+    });
+
+    // Configuração do leitor de código de barras
+    Quagga.init({
+        inputStream: {
+            name: "Live",
+            type: "LiveStream",
+            target: document.querySelector('#preview'),
+            constraints: {
+                width: 600,
+                height: 200,
+            },
+        },
+        decoder: {
+            readers: ["code_128_reader"]
+        }
+    }, function (err) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        Quagga.start();
+    });
+
+    // Evento de leitura do código de barras
+    Quagga.onDetected(function (result) {
+        alert('Código de barras lido: ' + result.codeResult.code);
+    });
+});</script>
