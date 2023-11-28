@@ -3,16 +3,17 @@ const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
+const csv = require('csv-parser');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const fs = require('fs');
 
 // Defina o caminho do arquivo CSV
-const csvFilePath = 'output.csv';
+const bd = 'bd.csv';
 
-function escrevaCsv(data){
+function escrevaBd(data){
 // Crie um objeto CsvWriter
 const csvWriter = createCsvWriter({
-  path: csvFilePath,
+  path: bd,
   header: [
     { id: 'rua', title: 'rua' },
     { id: 'lado', title: 'lado' },
@@ -48,7 +49,6 @@ csvWriter.writeRecords(dadosFormatados)
 }
 //importar modulos de End.js e Prod.js
 const end = require('./end.js').End
-const prod = require('./prod.js').Prod
 const rmv = require('../wms-javascript-master/rmv.js');
 const add = require('./../wms-javascript-master/add.js');
 
@@ -95,7 +95,26 @@ app.post('/result', function(req, res) {
 
    //percorre o arrey de objetos e seus valores
   
-  var objetosEncontrados = end.filter(objeto => objeto.produtoNoEndereco.EAN == pesquisado)
+  
+
+// Array para armazenar os objetosEncontrados
+var objetosEncontrados = [];
+
+// Ler o arquivo CSV
+fs.createReadStream(bd)
+  .pipe(csv())
+  .on('data', (row) => {
+    // Verificar se o elemento é o procurado (ajuste conforme necessário)
+    if (row.EAN === pesquisado || row.descricao === pesquisado ) {
+      objetosEncontrados.push(row);
+    }
+  })
+  .on('end', () => {
+    // Exibir os objetosEncontrados
+    console.log('Elementos encontrados no .CSV:', objetosEncontrados);
+  });
+
+  var objetosEncontrados = objetosEncontrados.filter(objeto => objeto.produtoNoEndereco.EAN == pesquisado)
 
 
   if(objetosEncontrados.length > 0){
@@ -103,7 +122,7 @@ app.post('/result', function(req, res) {
     var soma = objetosEncontrados.reduce(function (acumulador, item) {
       return acumulador + item.produtoNoEndereco.quantidade;
     }, 0);
-    console.log(objetosEncontrados)
+    //console.log(objetosEncontrados)
     res.render('result',{objetosEncontrados, pesquisado, soma})   
 
   }else{
@@ -117,7 +136,7 @@ app.post('/result', function(req, res) {
       return acumulador + item.produtoNoEndereco.quantidade;
     }, 0);
 
-    console.log("Encontrado: "+objetosEncontrados)
+    //console.log("Encontrado: "+objetosEncontrados)
 
     res.render('result',{objetosEncontrados, pesquisado, soma})   
 
@@ -194,7 +213,9 @@ app.post('/resultadd', function(req, res) {
     let addprod = req.body.ADD
     console.error("carregou resultadd e "+addprod);
     add(addprod)
-    escrevaCsv(end[0])
+
+  //escreva no banco de dados.
+    escrevaBd()
     res.render('resultadd');
 });
 
