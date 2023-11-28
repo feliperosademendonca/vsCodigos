@@ -3,9 +3,49 @@ const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
- 
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const fs = require('fs');
 
- 
+// Defina o caminho do arquivo CSV
+const csvFilePath = 'output.csv';
+
+function escrevaCsv(data){
+// Crie um objeto CsvWriter
+const csvWriter = createCsvWriter({
+  path: csvFilePath,
+  header: [
+    { id: 'rua', title: 'rua' },
+    { id: 'lado', title: 'lado' },
+    { id: 'predio', title: 'predio' },
+    { id: 'andar', title: 'andar' },
+    { id: 'EAN', title: 'EAN' },
+    { id: 'codigo', title: 'codigo' },
+    { id: 'descricao', title: 'descrico' },
+    { id: 'validade', title: 'validde' },
+    { id: 'quantidade', title: 'quantidade' },
+  ]
+});
+
+const dadosFormatados = end.map(item => ({
+  rua: item.rua,
+  lado: item.lado,
+  predio: item.predio,
+  andar: item.andar,
+  EAN: item.produtoNoEndereco.EAN,
+  codigo: item.produtoNoEndereco.codigo,
+  descricao: item.produtoNoEndereco.descricao,
+  validade: item.produtoNoEndereco.validade,
+  quantidade: item.produtoNoEndereco.quantidade,
+
+
+}));
+
+// Escreva os dados no arquivo CSV
+csvWriter.writeRecords(dadosFormatados)
+  .then(() => console.log('Arquivo CSV foi escrito com sucesso'))
+  .catch(err => console.error('Erro ao escrever o arquivo CSV', err));
+
+}
 //importar modulos de End.js e Prod.js
 const end = require('./end.js').End
 const prod = require('./prod.js').Prod
@@ -154,6 +194,7 @@ app.post('/resultadd', function(req, res) {
     let addprod = req.body.ADD
     console.error("carregou resultadd e "+addprod);
     add(addprod)
+    escrevaCsv(end[0])
     res.render('resultadd');
 });
 
