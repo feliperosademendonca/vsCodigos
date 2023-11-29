@@ -257,8 +257,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "test",
-    "start": "start"
+    "start": "start node src/index.js",
+    "test": "test"
   },
   "author": "felipe",
   "license": "ISC"
