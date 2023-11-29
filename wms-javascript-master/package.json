@@ -256,10 +256,10 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
-    "start": "start node index.js",
+    "start": "node index.js",
     "test": "test"
   },
-  
+
   "devDependencies": {},
  
   "author": "felipe",
