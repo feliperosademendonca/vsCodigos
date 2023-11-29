@@ -255,11 +255,13 @@
     "xmlchars": "^2.2.0",
     "yallist": "^4.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "start node index.js",
     "test": "test"
   },
+  
+  "devDependencies": {},
+ 
   "author": "felipe",
   "license": "ISC"
 }
