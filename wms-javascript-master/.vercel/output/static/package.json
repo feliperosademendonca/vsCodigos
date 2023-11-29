@@ -257,7 +257,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "start node src/index.js",
+    "start": "start node index.js",
     "test": "test"
   },
   "author": "felipe",
